@@ -25,6 +25,9 @@ export default function LoginPage() {
 
     if (success) {
       router.push("/");
+      if (typeof window !== "undefined" && window.location) {
+        window.location.href = "/";
+      }
     }
   };
 
@@ -38,7 +41,11 @@ export default function LoginPage() {
           </label>
           <input
             id="login-email-input"
-            type="email"
+            name="email"
+            data-testid="login-email-input"
+            type="text"
+            inputMode="email"
+            autoComplete="email"
             required
             value={email}
             onChange={onEmailChange}
@@ -53,7 +60,10 @@ export default function LoginPage() {
           </label>
           <input
             id="login-password-input"
+            name="password"
+            data-testid="login-password-input"
             type="password"
+            autoComplete="current-password"
             required
             value={password}
             onChange={onPasswordChange}
@@ -64,6 +74,7 @@ export default function LoginPage() {
 
         <button
           id="login-submit-button"
+          data-testid="login-submit-button"
           type="submit"
           disabled={isLoading}
           className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg shadow-md transition duration-150 ease-in-out text-sm cursor-pointer"

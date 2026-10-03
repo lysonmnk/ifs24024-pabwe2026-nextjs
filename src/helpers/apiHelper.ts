@@ -4,18 +4,32 @@ const ACCESS_TOKEN_KEY = "token";
 
 export function getAccessToken(): string | null {
   if (typeof window === "undefined") return null;
-  return localStorage.getItem(ACCESS_TOKEN_KEY);
+  const local = localStorage.getItem(ACCESS_TOKEN_KEY);
+  if (local) return local;
+  if (typeof document !== "undefined" && document.cookie) {
+    const match = document.cookie.match(/(?:^|; )(?:token|access_token)=([^;]*)/);
+    return match ? decodeURIComponent(match[1]) : null;
+  }
+  return null;
 }
 
 export function putAccessToken(token: string): void {
   if (typeof window !== "undefined") {
     localStorage.setItem(ACCESS_TOKEN_KEY, token);
+    if (typeof document !== "undefined") {
+      document.cookie = `token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`;
+      document.cookie = `access_token=${encodeURIComponent(token)}; path=/; max-age=86400; SameSite=Lax`;
+    }
   }
 }
 
 export function removeAccessToken(): void {
   if (typeof window !== "undefined") {
     localStorage.removeItem(ACCESS_TOKEN_KEY);
+    if (typeof document !== "undefined") {
+      document.cookie = "token=; path=/; max-age=0; SameSite=Lax";
+      document.cookie = "access_token=; path=/; max-age=0; SameSite=Lax";
+    }
   }
 }
 

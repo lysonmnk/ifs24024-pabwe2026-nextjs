@@ -12,6 +12,10 @@ describe("apiHelper", () => {
 
   beforeEach(() => {
     localStorage.clear();
+    if (typeof document !== "undefined") {
+      document.cookie = "token=; max-age=0";
+      document.cookie = "access_token=; max-age=0";
+    }
     vi.clearAllMocks();
   });
 

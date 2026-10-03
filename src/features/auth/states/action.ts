@@ -60,8 +60,9 @@ export function asyncSetAuthUser(payload: LoginPayload) {
       const response = await authApi.login(payload);
       if (response.status === "success" && response.data) {
         putAccessToken(response.data.token);
-        dispatch(setAuthUserActionCreator(response.data.user));
-        showSuccess(response.message || "Login berhasil!");
+        const user = response.data.user || (response.data as any);
+        dispatch(setAuthUserActionCreator(user));
+        dispatch(setIsPreloadActionCreator(false));
         return true;
       } else {
         showError(response.message || "Login gagal");
@@ -97,8 +98,11 @@ export function asyncPreloadProcess() {
         return;
       }
       const response = await userApi.getProfile();
-      if (response.status === "success" && response.data?.user) {
-        dispatch(setAuthUserActionCreator(response.data.user));
+      if (
+        response.status === "success" &&
+        (response.data?.user || (response.data as any)?.id || (response.data as any)?.email)
+      ) {
+        dispatch(setAuthUserActionCreator(response.data?.user || (response.data as any)));
       } else {
         removeAccessToken();
         dispatch(setAuthUserActionCreator(null));
