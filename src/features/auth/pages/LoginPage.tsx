@@ -33,11 +33,11 @@ export default function LoginPage() {
       <h2 className="text-xl font-semibold text-gray-800 mb-6 text-center">Masuk ke Akun Anda</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="email">
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="login-email-input">
             Alamat Email
           </label>
           <input
-            id="email"
+            id="login-email-input"
             type="email"
             required
             value={email}
@@ -48,11 +48,11 @@ export default function LoginPage() {
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="password">
+          <label className="block text-sm font-medium text-gray-700 mb-1" htmlFor="login-password-input">
             Kata Sandi
           </label>
           <input
-            id="password"
+            id="login-password-input"
             type="password"
             required
             value={password}
@@ -63,9 +63,10 @@ export default function LoginPage() {
         </div>
 
         <button
+          id="login-submit-button"
           type="submit"
           disabled={isLoading}
-          className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg shadow-md transition duration-150 ease-in-out text-sm"
+          className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white font-medium rounded-lg shadow-md transition duration-150 ease-in-out text-sm cursor-pointer"
         >
           {isLoading ? "Sedang Memproses..." : "Masuk"}
         </button>
