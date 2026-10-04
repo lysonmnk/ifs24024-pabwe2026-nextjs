@@ -63,6 +63,8 @@ export default function HomePage() {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
+      <h1 className="sr-only">Linimasa Postingan</h1>
+
       {/* Filter Tabs */}
       <div className="flex bg-gray-100 p-1 rounded-xl">
         <button
@@ -93,8 +95,8 @@ export default function HomePage() {
       {filteredPosts.length === 0 ? (
         <div className="text-center py-16 bg-white rounded-2xl border border-gray-100 shadow-xs">
           <IconMoodEmpty className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-600 font-medium">Belum ada postingan yang sesuai</p>
-          <p className="text-xs text-gray-400 mt-1">
+          <p className="text-gray-700 font-medium">Belum ada postingan yang sesuai</p>
+          <p className="text-xs text-gray-600 mt-1">
             {searchQuery
               ? "Coba gunakan kata kunci pencarian yang lain."
               : "Mulai bagikan cerita Anda dengan membuat postingan baru!"}
@@ -117,7 +119,8 @@ export default function HomePage() {
                     {post.author?.photo ? (
                       <img
                         src={post.author.photo}
-                        alt={post.author.name}
+                        alt=""
+                        aria-hidden="true"
                         className="w-10 h-10 rounded-full object-cover border border-gray-200"
                       />
                     ) : (
@@ -126,8 +129,8 @@ export default function HomePage() {
                       </div>
                     )}
                     <div>
-                      <h4 className="font-semibold text-gray-900 text-sm">{post.author?.name}</h4>
-                      <p className="text-xs text-gray-400">{formatDate(post.created_at)}</p>
+                      <h2 className="font-semibold text-gray-900 text-sm">{post.author?.name}</h2>
+                      <p className="text-xs text-gray-600">{formatDate(post.created_at)}</p>
                     </div>
                   </div>
 
@@ -138,8 +141,9 @@ export default function HomePage() {
                         onClick={() =>
                           setActiveCoverPost({ id: post.id, cover: post.cover })
                         }
-                        className="p-1.5 text-gray-400 hover:text-blue-600 rounded-lg transition"
+                        className="p-1.5 text-gray-600 hover:text-blue-600 rounded-lg transition"
                         title="Ganti cover"
+                        aria-label="Ganti cover"
                       >
                         <IconPhoto className="w-4 h-4" />
                       </button>
@@ -148,16 +152,18 @@ export default function HomePage() {
                         onClick={() =>
                           setActiveEditPost({ id: post.id, desc: post.description })
                         }
-                        className="p-1.5 text-gray-400 hover:text-amber-600 rounded-lg transition"
+                        className="p-1.5 text-gray-600 hover:text-amber-600 rounded-lg transition"
                         title="Ubah postingan"
+                        aria-label="Ubah postingan"
                       >
                         <IconEdit className="w-4 h-4" />
                       </button>
                       <button
                         type="button"
                         onClick={() => handleDeletePost(post.id)}
-                        className="p-1.5 text-gray-400 hover:text-red-600 rounded-lg transition"
+                        className="p-1.5 text-gray-600 hover:text-red-600 rounded-lg transition"
                         title="Hapus postingan"
+                        aria-label="Hapus postingan"
                       >
                         <IconTrash className="w-4 h-4" />
                       </button>
@@ -188,8 +194,9 @@ export default function HomePage() {
                   <button
                     type="button"
                     onClick={() => handleLike(post.id, post.likes)}
+                    aria-label={isLiked ? "Batal menyukai postingan" : "Sukai postingan"}
                     className={`flex items-center gap-1.5 text-xs font-semibold transition ${
-                      isLiked ? "text-red-600" : "text-gray-500 hover:text-red-600"
+                      isLiked ? "text-red-600" : "text-gray-600 hover:text-red-600"
                     }`}
                   >
                     {isLiked ? (
@@ -202,7 +209,7 @@ export default function HomePage() {
 
                   <Link
                     href={`/posts/${post.id}`}
-                    className="flex items-center gap-1.5 text-xs font-semibold text-gray-500 hover:text-blue-600 transition"
+                    className="flex items-center gap-1.5 text-xs font-semibold text-gray-600 hover:text-blue-600 transition"
                   >
                     <IconMessageCircle className="w-4 h-4" />
                     <span>{post.comments.length} Komentar</span>

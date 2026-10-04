@@ -57,7 +57,8 @@ export default function AddModal({ isOpen, onClose }: AddModalProps) {
           <button
             type="button"
             onClick={onClose}
-            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition"
+            aria-label="Tutup modal"
+            className="p-1 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition"
           >
             <IconX className="w-5 h-5" />
           </button>
@@ -85,6 +86,7 @@ export default function AddModal({ isOpen, onClose }: AddModalProps) {
               <button
                 type="button"
                 onClick={handleRemoveCover}
+                aria-label="Hapus gambar"
                 className="absolute top-2 right-2 p-1.5 bg-black/60 hover:bg-black/80 text-white rounded-full transition"
                 title="Hapus gambar"
               >

@@ -69,7 +69,7 @@ export default function DetailPage({ postId }: DetailPageProps) {
     return (
       <div className="max-w-2xl mx-auto py-12 text-center">
         <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-sm text-gray-500">Memuat detail postingan...</p>
+        <p className="text-sm text-gray-700">Memuat detail postingan...</p>
       </div>
     );
   }
@@ -80,6 +80,8 @@ export default function DetailPage({ postId }: DetailPageProps) {
 
   return (
     <div className="max-w-2xl mx-auto space-y-6">
+      <h1 className="sr-only">Detail Postingan</h1>
+
       {/* Back button */}
       <div>
         <Link
@@ -98,7 +100,8 @@ export default function DetailPage({ postId }: DetailPageProps) {
           {post.author?.photo ? (
             <img
               src={post.author.photo}
-              alt={post.author.name}
+              alt=""
+              aria-hidden="true"
               className="w-11 h-11 rounded-full object-cover border border-gray-200"
             />
           ) : (
@@ -107,8 +110,8 @@ export default function DetailPage({ postId }: DetailPageProps) {
             </div>
           )}
           <div>
-            <h3 className="font-semibold text-gray-900">{post.author?.name}</h3>
-            <p className="text-xs text-gray-400">{formatDate(post.created_at)}</p>
+            <h2 className="font-semibold text-gray-900">{post.author?.name}</h2>
+            <p className="text-xs text-gray-600">{formatDate(post.created_at)}</p>
           </div>
         </div>
 
@@ -135,8 +138,9 @@ export default function DetailPage({ postId }: DetailPageProps) {
           <button
             type="button"
             onClick={handleLike}
+            aria-label={isLiked ? "Batal menyukai postingan" : "Sukai postingan"}
             className={`flex items-center gap-1.5 text-xs font-semibold transition ${
-              isLiked ? "text-red-600" : "text-gray-500 hover:text-red-600"
+              isLiked ? "text-red-600" : "text-gray-600 hover:text-red-600"
             }`}
           >
             {isLiked ? (
@@ -147,7 +151,7 @@ export default function DetailPage({ postId }: DetailPageProps) {
             <span>{post.likes.length} Suka</span>
           </button>
 
-          <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-500">
+          <div className="flex items-center gap-1.5 text-xs font-semibold text-gray-600">
             <IconMessageCircle className="w-4 h-4" />
             <span>{post.comments.length} Komentar</span>
           </div>
@@ -156,9 +160,9 @@ export default function DetailPage({ postId }: DetailPageProps) {
 
       {/* Comments Section */}
       <section className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-6">
-        <h4 className="font-semibold text-gray-900 text-base">
+        <h3 className="font-semibold text-gray-900 text-base">
           Komentar ({post.comments.length})
-        </h4>
+        </h3>
 
         {/* Add Comment Form */}
         <form onSubmit={handleAddComment} className="flex gap-2">
