@@ -135,8 +135,9 @@ export default function DetailPage({ postId }: DetailPageProps) {
           <button
             type="button"
             onClick={handleLike}
+            aria-label={isLiked ? "Hapus suka postingan" : "Sukai postingan"}
             className={`flex items-center gap-1.5 text-xs font-semibold transition ${
-              isLiked ? "text-red-600" : "text-gray-500 hover:text-red-600"
+              isLiked ? "text-red-600" : "text-gray-600 hover:text-red-600"
             }`}
           >
             {isLiked ? (
@@ -183,7 +184,7 @@ export default function DetailPage({ postId }: DetailPageProps) {
         {/* Comments List */}
         <div className="space-y-3 pt-2">
           {commentsList.length === 0 ? (
-            <p className="text-xs text-gray-400 text-center py-4">
+            <p className="text-xs text-gray-600 text-center py-4">
               Belum ada komentar. Jadilah yang pertama berkomentar!
             </p>
           ) : (
@@ -199,14 +200,15 @@ export default function DetailPage({ postId }: DetailPageProps) {
                       {isMyComment ? "Anda" : "Pengguna"}
                     </p>
                     <p className="text-sm text-gray-700">{c.comment}</p>
-                    <p className="text-[11px] text-gray-400">{formatDate(c.created_at)}</p>
+                    <p className="text-[11px] text-gray-600">{formatDate(c.created_at)}</p>
                   </div>
 
                   {isMyComment && (
                     <button
                       type="button"
                       onClick={handleDeleteComment}
-                      className="p-1 text-gray-400 hover:text-red-600 transition"
+                      aria-label="Hapus komentar saya"
+                      className="p-1 text-gray-600 hover:text-red-600 transition"
                       title="Hapus komentar saya"
                     >
                       <IconTrash className="w-4 h-4" />

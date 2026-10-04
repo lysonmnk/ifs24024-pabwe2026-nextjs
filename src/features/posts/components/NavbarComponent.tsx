@@ -72,7 +72,8 @@ export default function NavbarComponent({ onToggleMobileSidebar }: NavbarProps) 
           {authUser?.photo ? (
             <img
               src={authUser.photo}
-              alt={authUser.name}
+              alt=""
+              aria-hidden="true"
               className="w-8 h-8 rounded-full object-cover border border-gray-200"
             />
           ) : (
@@ -88,7 +89,8 @@ export default function NavbarComponent({ onToggleMobileSidebar }: NavbarProps) 
         <button
           type="button"
           onClick={handleLogout}
-          className="p-2 text-gray-500 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
+          aria-label="Keluar"
+          className="p-2 text-gray-600 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
           title="Keluar"
         >
           <IconLogout className="w-5 h-5" />

@@ -104,7 +104,7 @@ export default function ProfilePage() {
     <div className="max-w-4xl mx-auto space-y-8">
       <div>
         <h1 className="text-2xl font-bold text-gray-900">Pengaturan Profil</h1>
-        <p className="text-sm text-gray-500">Kelola informasi pribadi, foto avatar, dan keamanan akun Anda</p>
+        <p className="text-sm text-gray-600">Kelola informasi pribadi, foto avatar, dan keamanan akun Anda</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -114,7 +114,8 @@ export default function ProfilePage() {
             {photoPreview || authUser?.photo ? (
               <img
                 src={photoPreview || authUser?.photo || ""}
-                alt={authUser?.name}
+                alt=""
+                aria-hidden="true"
                 className="w-28 h-28 rounded-full object-cover border-4 border-white shadow-md"
               />
             ) : (
@@ -127,6 +128,7 @@ export default function ProfilePage() {
               onClick={() => fileInputRef.current?.click()}
               className="absolute bottom-0 right-0 p-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 shadow transition"
               title="Pilih foto"
+              aria-label="Pilih foto"
             >
               <IconCamera className="w-4 h-4" />
             </button>
@@ -140,7 +142,7 @@ export default function ProfilePage() {
           </div>
 
           <h2 className="font-bold text-lg text-gray-900">{authUser?.name}</h2>
-          <p className="text-sm text-gray-500">{authUser?.email}</p>
+          <p className="text-sm text-gray-600">{authUser?.email}</p>
           <span className="mt-2 text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
             Bergabung {formatDate(authUser?.created_at)}
           </span>

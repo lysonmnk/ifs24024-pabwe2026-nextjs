@@ -28,7 +28,7 @@ export default function UsersPage() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">Daftar Pengguna</h1>
-          <p className="text-sm text-gray-500">Temukan teman dan kolega yang terdaftar di Delcom Posts</p>
+          <p className="text-sm text-gray-600">Temukan teman dan kolega yang terdaftar di Delcom Posts</p>
         </div>
         <div className="relative w-full sm:w-72">
           <IconSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
@@ -45,8 +45,8 @@ export default function UsersPage() {
       {filteredUsers.length === 0 ? (
         <div className="text-center py-12 bg-white rounded-xl border border-gray-100">
           <IconUser className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500 font-medium">Tidak ada pengguna ditemukan</p>
-          <p className="text-xs text-gray-400 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+          <p className="text-gray-700 font-medium">Tidak ada pengguna ditemukan</p>
+          <p className="text-xs text-gray-600 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
@@ -58,7 +58,8 @@ export default function UsersPage() {
               {user.photo ? (
                 <img
                   src={user.photo}
-                  alt={user.name}
+                  alt=""
+                  aria-hidden="true"
                   className="w-14 h-14 rounded-full object-cover border border-gray-200"
                 />
               ) : (
@@ -67,9 +68,9 @@ export default function UsersPage() {
                 </div>
               )}
               <div className="min-w-0 flex-1">
-                <h3 className="font-semibold text-gray-900 truncate text-base">{user.name}</h3>
-                <p className="text-xs text-gray-500 truncate">{user.email}</p>
-                <p className="text-[11px] text-gray-400 mt-1">
+                <h2 className="font-semibold text-gray-900 truncate text-base">{user.name}</h2>
+                <p className="text-xs text-gray-600 truncate">{user.email}</p>
+                <p className="text-[11px] text-gray-600 mt-1">
                   Bergabung: {formatDate(user.created_at)}
                 </p>
               </div>

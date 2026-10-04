@@ -63,6 +63,7 @@ export function asyncSetAuthUser(payload: LoginPayload) {
         const user = response.data.user || (response.data as any);
         dispatch(setAuthUserActionCreator(user));
         dispatch(setIsPreloadActionCreator(false));
+        showSuccess(response.message || "Login berhasil");
         return true;
       } else {
         showError(response.message || "Login gagal");
