@@ -49,8 +49,7 @@ export default function ChangeModal({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Tutup modal"
-            className="p-1 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition"
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition"
           >
             <IconX className="w-5 h-5" />
           </button>

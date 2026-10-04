@@ -60,8 +60,7 @@ export default function ChangeCoverModal({
           <button
             type="button"
             onClick={onClose}
-            aria-label="Tutup modal"
-            className="p-1 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition"
+            className="p-1 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition"
           >
             <IconX className="w-5 h-5" />
           </button>
@@ -74,7 +73,7 @@ export default function ChangeCoverModal({
                 <img src={preview} alt="Pratinjau cover" className="w-full h-48 object-cover" />
               </div>
             ) : (
-              <div className="py-8 text-gray-600">
+              <div className="py-8 text-gray-400">
                 <IconPhoto className="w-12 h-12 mx-auto mb-2 opacity-50" />
                 <p className="text-sm">Belum ada gambar yang dipilih</p>
               </div>

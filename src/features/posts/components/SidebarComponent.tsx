@@ -69,8 +69,7 @@ export default function SidebarComponent({
             <button
               type="button"
               onClick={onClose}
-              aria-label="Tutup menu navigasi"
-              className="p-1 rounded-lg text-gray-600 hover:bg-gray-100"
+              className="p-1 rounded-lg text-gray-500 hover:bg-gray-100"
             >
               <IconX className="w-5 h-5" />
             </button>
